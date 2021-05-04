@@ -1,0 +1,31 @@
+private fun logInUser() {
+        val email = binding.logInEmail.text.toString()
+        val password = binding.logInPwdEt.text.toString()
+
+        when{
+            TextUtils.isEmpty(email)-> Snackbar.make(binding.loginLayout,"Email is required", Snackbar.LENGTH_LONG).show()
+            TextUtils.isEmpty(password) || email.length < 6-> Snackbar.make(binding.loginLayout,"Password is invalid", Snackbar.LENGTH_LONG).show()
+
+            else -> {
+                val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            saveUserInfo(email,password)
+
+                            val intent = Intent(this,MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+
+                            finish()
+                        } else {
+                            val message = task.exception.toString()
+                            Snackbar.make(binding.loginLayout, "email or password is incorrect", Snackbar.LENGTH_SHORT)
+                                .show()
+                            mAuth.signOut()
+                        }
+                    }
+            }
+        }
+    }

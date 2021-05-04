@@ -1,0 +1,12 @@
+ (context as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,ProfileFragment()).commit()
+
+.setONClick{
+findNavController().navigate(R.id.action_....)
+}
+
+
+
+Activity to fragment 
+
+* Create fragment in activity main set it's id 
+* findNavController(R.id.given_id).navigate(id produced by nac graph)

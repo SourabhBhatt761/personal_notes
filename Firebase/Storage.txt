@@ -1,0 +1,20 @@
+
+ fun uploadToFireStore(uri: Uri) {
+
+        Timber.i(uri.toString())
+        val fireRef = FirebaseStorage.getInstance().reference.child("uploads").child("Canvas_${System.currentTimeMillis() / 1000}.png")
+
+        fireRef.putFile(uri).addOnCompleteListener {
+            if (it.isSuccessful) {
+                snackBarMsg(this,"done")
+                fireRef.downloadUrl.addOnSuccessListener { url ->
+                    Timber.i(url.toString())
+                }
+            }else {
+                Timber.i(it.exception)
+            }
+        }
+         
+
+* putFile for upload -> uri in our case
+* downloadUrl for download link

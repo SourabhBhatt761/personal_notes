@@ -1,0 +1,34 @@
+git - init    ( shows the data or repo or files changed in the branch / creates the file)
+
+ls		(shows all the files )
+
+ls -a  		(shows the hidden files)
+	
+git status 	(checking the commits or repo basically tracks the files present time which we have to add)
+
+git add fileName.txt	(adding to the index of repo )
+
+[STEP - 1 : CHECK STATUS ] 	git status 
+[STEP - 2 : STAGING AREA ]  git add fineName.html  OR  git add -A{for multiple files} ( stages the file )
+[STEP - 3 : COMMITING AREA ] git commit -m "create index.html "	OR    git commit -a -m "ckjaj "
+
+git log 	(history of commits )
+
+git remote add origin "link "  		(adds the repo )
+
+cat edu4.txt
+
+
+				**New branch**
+
+git branch branchName		( adds the branch after master )
+
+git checkout branchName		( jumps to the newly created branch )
+
+
+
+				**meging**
+
+go to the master branch first by git checkout command
+
+git merge branchName

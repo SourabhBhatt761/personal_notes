@@ -1,0 +1,25 @@
+							**FirebaseDatabase**
+
+
+        val userRef = FirebaseDatabase.getInstance().reference.child("users")
+
+        userRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if(view!!.search_editText.text.toString().isBlank()){
+                        mUser?.clear()
+                            for(snapshot in dataSnapshot.children){
+                                val user = snapshot.getValue(User::class.java)
+                                if (user != null){
+                                    mUser?.add(user)
+                                }
+                             }
+                    userAdapter?.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }

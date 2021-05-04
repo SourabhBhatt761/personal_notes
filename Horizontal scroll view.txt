@@ -1,0 +1,45 @@
+// xml code
+
+<ImageButton
+                    android:id="@+id/ibMoveRight"
+                    style="@style/ToolsButtonTheme"
+                    android:background="@color/ScrollMoveBgColor"
+                    android:contentDescription="@string/arrow_right_button"
+                    android:onClick="@{() -> canvas.moveScroll(0)}"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hsvRight"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/ibMoveLeft"
+                    style="@style/ToolsButtonTheme"
+                    android:background="@color/ScrollMoveBgColor"
+                    android:contentDescription="@string/arrow_right_button"
+                    android:onClick="@{() -> canvas.moveScroll(1)}"
+                    android:src="@drawable/ic_arrow_left"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hsvRight"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+//code
+
+ fun moveScroll(direction: Int) {
+        when (direction) {
+            0 -> {
+                binding.hsvRight.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+                binding.ibMoveRight.visibility = View.INVISIBLE
+                binding.ibMoveLeft.visibility = View.VISIBLE
+            }
+            1 -> {
+                binding.hsvRight.fullScroll(HorizontalScrollView.FOCUS_LEFT)
+                binding.ibMoveLeft.visibility = View.INVISIBLE
+                binding.ibMoveRight.visibility = View.VISIBLE
+            }
+        }
+    }

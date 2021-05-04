@@ -1,0 +1,3 @@
+* addOnCompleteListener -> for success and failure both can be evaluated
+* addOnSuccessListener -> for success only
+* addOnFailureListener -> for failure only
