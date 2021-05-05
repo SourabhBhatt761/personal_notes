@@ -1,0 +1,35 @@
+
+//sealed class
+
+sealed class A{
+    class B : A()
+    class C : A()
+}
+
+**A sealed class cannot be instantiated.**
+
+fun main(args: Array<String>) 
+{
+    var a = A() //compiler error. Class A cannot be instantiated.
+}
+
+sealed class A{
+    class B : A() 
+    {
+        class E : A() //this works.
+    }
+    class C : A()
+
+    init {
+        println("sealed class A")
+    }
+
+}
+
+class D : A() //this works
+{
+class F: A() //This won't work. Since sealed class is defined in another scope.
+}
+
+
++ Constructors of a sealed class are private by default.

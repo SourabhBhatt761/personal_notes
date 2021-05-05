@@ -1,0 +1,46 @@
+*Used instead of list
+	how many times we'll iterate for finding the x?
+	then enum came in existance
+
+we just need to write .name and we'll have that value 
+without iteration we can print everything as mentioned below
+
+
+enum class DayOfTheWeek {
+	  Sunday,
+	Monday,
+	Tuesday,
+	Wednesday,
+	Thursday,
+	Friday,
+	Saturday
+}
+
+main function -> 
+	for (day in DayOfTheWeek.values()) {
+ 	 println("Day ${day.ordinal}: ${day.name}")
+		}
+
+
+output :
+Day 0: Sunday
+Day 1: Monday
+Day 2: Tuesday
+Day 3: Wednesday
+Day 4: Thursday
+Day 5: Friday
+Day 6: Saturday
+
+
++ ordinal for position
++ name for the object written
++ values gives you a List of all the declared cases in the class
+
+//function
+val dayIndex = 0
+val dayAtIndex = DayOfTheWeek.values()[dayIndex]
+println("Day at $dayIndex is $dayAtIndex")
+
+//output
+Day at 0 is Sunday
+
