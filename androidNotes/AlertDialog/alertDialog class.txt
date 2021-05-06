@@ -1,0 +1,107 @@
+class AlertDialog(
+        a: Activity,
+        var title: String,
+        var warning: String,
+) : Dialog(a) {
+
+    private var binding : AlertDialogBinding? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        binding = AlertDialogBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
+
+        initDialog()
+
+    }
+
+    override fun onDetachedFromWindow() {
+        binding = null
+        super.onDetachedFromWindow()
+    }
+
+    private fun initDialog() {
+        binding!!.alertTitle.text = title
+        binding!!.alertWarning.text = warning
+
+        binding!!.alertCancel.setOnClickListener {
+            hide()
+        }
+
+        binding!!.alertGotIt.setOnClickListener {
+        }
+    }
+}
+
+//xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@android:color/transparent"
+    android:clipToPadding="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/alert_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="19sp"
+        android:text="Confirm Delete"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/alert_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat"
+        android:text="Are you sure you want to delete this offer?"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/alert_cancel"
+           android:layout_weight="1"
+           android:layout_height="wrap_content"
+           android:text="@string/cancel"
+           app:backgroundTint="@null"
+           android:background="@drawable/cancel_button_background"
+           android:layout_marginEnd="8dp"
+            android:layout_marginTop="24dp"
+           android:layout_marginStart="24dp"
+           android:textColor="@color/gray"
+          android:layout_width="wrap_content" />
+
+        <Button
+            android:id="@+id/alert_got_it"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/got_it"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/button_background"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
