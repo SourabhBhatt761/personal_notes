@@ -1,0 +1,46 @@
+
+//class
+
+class ToDoDiffUtil(
+    private val oldList: List<ToDoData>,
+    private val newList: List<ToDoData>
+): DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] === newList[newItemPosition]
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].id == newList[newItemPosition].id
+                && oldList[oldItemPosition].title == newList[newItemPosition].title
+                && oldList[oldItemPosition].description == newList[newItemPosition].description
+                && oldList[oldItemPosition].priority == newList[newItemPosition].priority
+    }
+
+
++ === is used to check whether the oldList & newList points to the same location (or object in general)
+
+
+//changes in adapter 
+
+ fun setData(toDoData: List<ToDoData>){
+        val toDoDiffUtil = ToDoDiffUtil(dataList, toDoData)
+        val toDoDiffResult = DiffUtil.calculateDiff(toDoDiffUtil)
+        this.dataList = toDoData
+        toDoDiffResult.dispatchUpdatesTo(this)
+    }
+
+
++ calculateDiff 	-> calculates the difference between two lists provided
++ dispatchUpdatesTo     -> changes the recycler view (acts as notifydatasetchanged())
+
+
+
