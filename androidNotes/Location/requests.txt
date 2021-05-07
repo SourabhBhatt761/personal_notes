@@ -1,0 +1,44 @@
+ private fun locationPermission() {
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            requestPermissions(
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION),
+                LOCATION_REQ_CODE
+            )
+            return
+        }
+
+        getUserLocation()
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            LOCATION_REQ_CODE -> {
+                if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                    getUserLocation()
+                } else {
+                    Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
++ Coarse - Coarse location is determined by using WiFi and mobile data.
++ Fine - Fine location is determined by using GPS data in addition to mobile and WiFi data.
++ Just adding the fine location permission will give the accurate location

@@ -1,0 +1,42 @@
+
+//just to show the lat ,long
+
+private lateint var fusedLocation : FusedLocationProviderClient
+
+onCreateView(){
+
+fusedLocation = LocationServices.getFusedLocationProviderClient(requireContext())
+binding.button.setOnClick...{
+
+fusedLocation.lastLocation.addOnSuccessListener{ location ->
+Log.d("uni",location.latitude)
+Log.d("uni",location.longitude)
+}
+}
+
+
+
+
+
+
+//to show the cityName as well
+
+private lateint var fusedLocation : FusedLocationProviderClient
+
+onCreateView(){
+
+fusedLocation = LocationServices.getFusedLocationProviderClient(requireContext())
+binding.button.setOnClick...{
+
+fusedLocation.lastLocation.addOnSuccessListener{ location ->
+val geoCoder = GeoCoder(requireContext())
+val currentLocation = geoCoder.getFromLocation(
+location.latitude,
+location..longitude,
+1
+)
+Log.d("uni",currentLocation.first().countryCode) 
+Log.d("uni",currentLocation.first().subLocality)
+
+}
+}
