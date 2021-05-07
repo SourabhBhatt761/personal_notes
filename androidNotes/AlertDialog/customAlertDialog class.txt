@@ -35,6 +35,7 @@ class AlertDialog(
     }
 }
 
+
 //xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -105,3 +106,24 @@ class AlertDialog(
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
+
+//more easier way
+make function in the class
+
+fun showCustomDialog(){
+val dialog = Dialog(this)
+
+val binding = AlertDialogBinding.inflate(layoutinflater)
+dialog.setContentView(binding.root)
+
+binding.'something'.setOnClickListener{
+}
+}
+
+
+
+
+
+
+

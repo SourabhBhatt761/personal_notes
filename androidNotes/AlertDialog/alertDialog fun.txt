@@ -14,4 +14,4 @@ val builder = AlertDialog.Builder(requireContext())
         builder.create().show()
 
 + create() -> creates the dialog 
-+ show() -> displays the dialog anytime we want best practise is to create the alertDialog class and show whenever we want to
++ show() -> displays the dialog anytime we want .Best practise is to create the alertDialog class and show whenever we want to
