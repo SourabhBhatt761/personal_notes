@@ -1,0 +1,37 @@
+//dependency
+//Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
+
+
+//make classes under utils
+
+class DebugTree : Timber.DebugTree() {
+    override fun createStackElementTag(element: StackTraceElement): String {
+        return "(${element.fileName}:${element.lineNumber})#${element.methodName}"
+    }
+}
+
+class ReleaseTree : Timber.Tree() {
+
+    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+    }
+
+    override fun e(t: Throwable?) {
+        super.e(t)
+    }
+}
+
+
+//main activity or in your application class
+
+ private fun setDebugTools() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        } else {
+            Timber.plant(ReleaseTree())
+        }
+    }
+
+
