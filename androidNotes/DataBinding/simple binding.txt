@@ -21,6 +21,10 @@
 	    android:onClick="@{() -> canvas.fab()}"
 		/>
 
+<textView
+	android: text ="@{canvas.setText}"
+/>
+
 
 
 //Canvas Fragment
@@ -30,5 +34,7 @@ fun fab() {
         setAnimation(fabClicked)
         fabClicked = !fabClicked
     }
+
+var setText = LiveData<>something something.....
 
 + the class in which the type is pointing to should have the function in public state so that it can access it
