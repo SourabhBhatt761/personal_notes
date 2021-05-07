@@ -1,0 +1,34 @@
+	
+
+	//animations
+    private val fromLeft : Animation by lazy{ AnimationUtils.loadAnimation(
+        requireContext(),
+        R.anim.animation_from_left
+    )}
+    private val fromRight : Animation by lazy{ AnimationUtils.loadAnimation(
+        requireContext(),
+        R.anim.animation_from_right
+    )}
+    private val toLeft : Animation by lazy{ AnimationUtils.loadAnimation(
+        requireContext(),
+        R.anim.animation_to_left
+    )}
+    private val toRight : Animation by lazy{ AnimationUtils.loadAnimation(
+        requireContext(),
+        R.anim.animation_to_right
+    )}
+
+
+
+ private fun setAnimation(fabClicked: Boolean) {
+    if (!fabClicked){
+        binding.apply {
+            cvToolsPanel.startAnimation(fromRight)        //animates everytime
+            cvToolsPanel.animation = fromRight              //animates when the view is created for the first time
+        }
+    }else{
+        binding.apply {
+            cvToolsPanel.startAnimation(toRight)
+
+        }
+    }
