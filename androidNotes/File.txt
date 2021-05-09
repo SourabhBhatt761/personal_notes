@@ -1,0 +1,41 @@
+//write in a file
+
+File dataDir = ContextCompat.getDataDir(this);
+File myFile = new File(dataDir,"file.txt");
+
+	try{
+			//to append write true else no need to add 
+		FileOutputStream fos = new FileOutputStream(myFile, true);
+		fos.write(text.getBytes());
+	}catch(FileNotFoundException fnfe){
+	toast..
+	}catch(IOException ioe){
+	toast..
+	}
+}
+
+
+//read from a file
+
+File dataDir = ContextCompat.getDataDir(this);
+File myFile = new File(dataDir,"file.txt");
+
+	try{
+	FileInputStream fis = new FileInputStream(myFile);
+	InputStreamReader isr = new InputStreamReader (fis);
+	BufferedReader br  = new BufferedReader(isr);
+
+	StringBuilder sb = new StringBuilder();
+	String buffer = br.readLine();
+
+	while(buffer != null){
+	sb.append(buffer);
+	buffer = br.readLine();
+	}
+
+	}catch(FileNotFoundException fnfe){
+	toast..
+	}catch(IOException ioe){
+	toast..
+	}
+}

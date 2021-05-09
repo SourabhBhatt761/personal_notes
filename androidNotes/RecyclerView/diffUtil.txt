@@ -26,7 +26,7 @@ class ToDoDiffUtil(
     }
 
 
-+ === is used to check whether the oldList & newList points to the same location (or object in general)
++) === is used to check whether the oldList & newList points to the same location (or object in general)
 
 
 //changes in adapter 

@@ -1,0 +1,31 @@
+				_DEPENDENCIES_
+
+
+    // Retrofit and relevant converters
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
+
+
+				_CREATION_
+
+interface ApiClient{
+
+@GET("/api/endpoints/random")
+suspend fun getRandomImage(): Response<ModelClass>
+
+}
+
+object ApiAdapter{
+
+val apiClient: ApiClient = Retrofit.Builder()
+	.baseUrl("https://dog.ceo")
+	.client(OkHttpClient())
+	.addConverterFactory(GsonConverterFactory.create())
+	.build()
+	.create(ApiClient::class.java)
+}

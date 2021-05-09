@@ -118,7 +118,11 @@ val binding = AlertDialogBinding.inflate(layoutinflater)
 dialog.setContentView(binding.root)
 
 binding.'something'.setOnClickListener{
+
+dialog.dismiss()
 }
+
+dialog.show()
 }
 
 
