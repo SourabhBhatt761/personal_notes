@@ -1,0 +1,45 @@
+class ToBeCalled {
+    fun callMe() = println("You are calling me :)")
+}
+fun main(args: Array<String>) {     
+    val obj = ToBeCalled()
+    
+    // calling callMe() method using object obj
+    obj.callMe()
+}
+
+
+*_* we have to make the object first and then only we can call the method
+	but with the help of STATIC (Java) keyword in java we can directly call our method
+	without creating the variable
+
+	public class MyClass {
+
+   	 public static void myMethod() {
+   	     // do something
+   	   }
+
+	}
+
+in function -> MyClass.myMethod()
+
+
+
+//========================kotlin====================//
+we use companion object instead of static keyword
+
+class ToBeCalled {
+    companion object Test {
+        fun callMe() = println("You are calling me :)")
+    }
+}
+fun main(args: Array<String>) {
+    ToBeCalled.callMe()
+}
+
+
+
+-> the default name for the companion object will be comapnion , we can remove Test  
+
+
+

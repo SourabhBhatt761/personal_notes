@@ -26,6 +26,8 @@ sealed class A{
 
 }
 
+____few lines below____
+
 class D : A() //this works
 {
 class F: A() //This won't work. Since sealed class is defined in another scope.
