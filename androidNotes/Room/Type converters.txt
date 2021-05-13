@@ -1,0 +1,18 @@
+//here Priority was an enum class
+
+class Converter {
+
+    @TypeConverter
+    fun fromPriority(priority: Priority): String {
+        return priority.name
+    }
+
+    @TypeConverter
+    fun toPriority(priority: String): Priority {
+        return Priority.valueOf(priority)
+    }
+
+}
+
+
+-> we don't need to do anything else (except annotating db with @Typeconverter) android will do everything for us

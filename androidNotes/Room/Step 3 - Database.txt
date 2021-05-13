@@ -8,7 +8,7 @@ abstract class ToDoDatabase : RoomDatabase() {
     abstract fun toDoDao(): ToDoDao
 
 companion object {	
-        @Volatile								//only
+        @Volatile								
         private var INSTANCE: ToDoDatabase? = null
 
         fun getDatabase(context: Context): ToDoDatabase =
@@ -25,3 +25,9 @@ companion object {
     }
 
 }
+
+
+-> The volatile keyword does not cache the value (RAM) of the variable and always read the variable from the main memory(CPU). That means whenever we need the INSTANCE value OS won't be using the 
+    stored value in ram instead it will directly take the value from cpu.
+-> Synchronized block is  used to stop other threads to access the resource at the same time , so that there won't be erroneous and unforseen results.
+-> @TypeConverters is used to convert the objects to primitive types by creating our own converters
