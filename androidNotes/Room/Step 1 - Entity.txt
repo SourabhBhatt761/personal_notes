@@ -1,0 +1,41 @@
+//it is used to create the table inside the database
+
+
+@Entity(tableName = "weather_table")
+data class DBWeather(
+
+    @ColumnInfo(name = "unique_id")
+    @PrimaryKey(autoGenerate = true)
+    var uId: Int = 0,
+
+    @ColumnInfo(name = "city_id")
+    val cityId: Int,
+
+    @ColumnInfo(name = "city_name")
+    val cityName: String,
+
+    @Embedded
+    val wind: Wind,
+
+    @ColumnInfo(name = "weather_description")
+    val networkWeatherDescriptions: List<Weather>,
+
+    @Embedded
+    val networkWeatherCondition: Main
+)
+
+
+-> @ColumnInfo is used to change the column name in the table if it's not used then the ( var random_name : String, ) random_name will be the table name
+-> @PrimaryKey for primarykey
+-> @Embedded for the objects to store inside the db 
+
+	Person(
+	var name : String,
+	var age : String,
+	var location : Location,    -> this object contains lat & long
+	var dob : String,
+	)
+
+	the name which will be saved in the db will be :-
+
+	name,age,location_lat,location_long,dob

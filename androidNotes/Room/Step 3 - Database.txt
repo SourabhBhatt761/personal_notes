@@ -1,0 +1,27 @@
+//inside the db multiple tables can be stored
+
+@Database(entities = [DBWeather::class, DBWeatherForecast::class], version = 1, exportSchema = true)
+@TypeConverters( ListNetworkWeatherDescriptionConverter::class ) 
+
+abstract class ToDoDatabase : RoomDatabase() {
+
+    abstract fun toDoDao(): ToDoDao
+
+companion object {	
+        @Volatile								//only
+        private var INSTANCE: ToDoDatabase? = null
+
+        fun getDatabase(context: Context): ToDoDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE
+                    ?: buildDatabase(context).also { INSTANCE = it }
+            }
+
+        private fun buildDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                ToDoDatabase::class.java, "todo_database"
+            ).build()
+    }
+
+}
