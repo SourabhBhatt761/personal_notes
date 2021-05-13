@@ -39,3 +39,14 @@ File myFile = new File(dataDir,"file.txt");
 	toast..
 	}
 }
+
+
+
+
+//kotlin
+
+File dataDir = ContextCompat.getDataDir(this);
+File myFile = new File(dataDir,"file.txt");
+
+myFile.readLine();
+myFile.write();
