@@ -29,6 +29,8 @@
 
 //Canvas Fragment
 
+binding.setLifeCycleOwner(this)
+
 fun fab() {
         setVisibility(fabClicked)
         setAnimation(fabClicked)
@@ -37,4 +39,5 @@ fun fab() {
 
 var setText = LiveData<>something something.....
 
-+ the class in which the type is pointing to should have the function in public state so that it can access it
+-> the class in which the type is pointing to should have the function in public state so that it can access it
+-> setLifeCycleOwner is very useful it allows the live data to directly update the UI with the help of data binding.

@@ -1,0 +1,6 @@
+//when we start our application , first the application lifecycle works then later on activity and fragment ones
+
+
+@HiltAndroidApp
+class MyApplication: Application() {
+}

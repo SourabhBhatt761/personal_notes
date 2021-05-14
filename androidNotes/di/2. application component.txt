@@ -1,0 +1,48 @@
+
+@Module
+@InstallIn(ApplicationComponent::class)
+object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun provideHttpClient() : OkHttpClient {
+        return OkHttpClient.Builder()
+            .readTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofitInstance(
+        okHttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
+        return retrofit.create(FoodRecipesApi::class.java)
+    }
+
+}
+
+
+
+
+-> @Module 
+-> @InstallIn all those bindings inside this module will be availble in the application
+-> there are two methods for implementing dagger-hilt , this is the preferable one i.e. constructor method
+-> @Provides , we use this annotation because we are using third party library which is not created by us in the application
