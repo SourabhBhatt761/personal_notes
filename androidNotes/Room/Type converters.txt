@@ -20,3 +20,29 @@ class Converter {
 -> we don't need to do anything else (except annotating db with @Typeconverter) android will do everything for us
 
 
+
+
+//for storing the array list the process is little different
+
+class ListNetworkWeatherDescriptionConverter {
+
+    val gson = Gson()
+    val type: Type = object : TypeToken<List<NetworkWeatherDescription?>?>() {}.type
+
+
+    /**
+     * Converts a listOf[NetworkWeatherDescription] to a [String]
+     */
+    @TypeConverter
+    fun fromWeatherDtoList(list: List<NetworkWeatherDescription?>?): String {
+        return gson.toJson(list, type)
+    }
+
+    /**
+     * Converts a [String] to a listOf[NetworkWeatherDescription]
+     */
+    @TypeConverter
+    fun toWeatherDfromList(json: String?): List<NetworkWeatherDescription> {
+        return gson.fromJson(json, type)
+    }
+}
