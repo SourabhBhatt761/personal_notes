@@ -6,7 +6,7 @@ File myFile = new File(dataDir,"file.txt");
 	try{
 			//to append write true else no need to add 
 		FileOutputStream fos = new FileOutputStream(myFile, true);
-		fos.write(text.getBytes());
+		fos.write(text.getBytes());						//here text is editText
 	}catch(FileNotFoundException fnfe){
 	toast..
 	}catch(IOException ioe){

@@ -1,3 +1,5 @@
+//room can store primitive data types data classes can be stored with the annotation @Embedded
+
 //here Priority was an enum class
 
 class Converter {
@@ -16,3 +18,5 @@ class Converter {
 
 
 -> we don't need to do anything else (except annotating db with @Typeconverter) android will do everything for us
+
+
