@@ -21,9 +21,14 @@
 	    android:onClick="@{() -> canvas.fab()}"
 		/>
 
-<textView
-	android: text ="@{canvas.setText}"
-/>
+	<textView
+		android:id="  "
+		android:text="@{canvas.word}"
+		/>
+
+	<textView
+	android:text ="@{canvas.setText}"
+	/>
 
 
 

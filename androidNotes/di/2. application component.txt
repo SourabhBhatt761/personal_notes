@@ -42,7 +42,7 @@ object NetworkModule {
 
 
 
--> @Module 
+-> @Module informs Dagger that this class is a Dagger Module
 -> @InstallIn all those bindings inside this module will be availble in the application
 -> there are two methods for implementing dagger-hilt , this is the preferable one i.e. constructor method
 -> @Provides , we use this annotation because we are using third party library which is not created by us in the application
