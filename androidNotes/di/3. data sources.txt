@@ -1,0 +1,13 @@
+
+class RemoteDataSource @Inject constructor(
+    private val foodRecipesApi: FoodRecipesApi
+) {
+
+    suspend fun getRecipes(queries: Map<String, String>): Response<FoodRecipe> {
+        return foodRecipesApi.getRecipes(queries)
+    }
+}
+
+
+-> dagger will search for the function which returns the FoodRecipesApi which we have created in our module
+-> @Inject is used to inject our module inside the constructor which we have already created

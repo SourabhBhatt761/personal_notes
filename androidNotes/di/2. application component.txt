@@ -45,4 +45,7 @@ object NetworkModule {
 -> @Module informs Dagger that this class is a Dagger Module
 -> @InstallIn all those bindings inside this module will be availble in the application
 -> there are two methods for implementing dagger-hilt , this is the preferable one i.e. constructor method
--> @Provides , we use this annotation because we are using third party library which is not created by us in the application
+-> @Provides tell Dagger how to create instances of the type that this function returns , e.g last funciton returns FoodRecipesApi
+   Whenever Dagger needs to provide an instance of type FoodRecipesApi this code will run
+        
+   
