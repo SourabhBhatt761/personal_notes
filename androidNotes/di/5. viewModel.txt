@@ -1,0 +1,10 @@
+class MainViewModel @ViewModelInject constructor(
+    private val repository: Repository,
+    application: Application
+) : AndroidViewModel(application) {
+
+}
+
+
+-> @ViewModelInject with the help of this we don't need to make factory . Dagger will handle everything internally.
+
