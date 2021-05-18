@@ -1,9 +1,9 @@
 
 //class
 
-class ToDoDiffUtil(
-    private val oldList: List<ToDoData>,
-    private val newList: List<ToDoData>
+class RecipesDiffUtil(
+    private val oldList: List<Result>,
+    private val newList: List<Result>
 ): DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
@@ -19,12 +19,9 @@ class ToDoDiffUtil(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
-                && oldList[oldItemPosition].title == newList[newItemPosition].title
-                && oldList[oldItemPosition].description == newList[newItemPosition].description
-                && oldList[oldItemPosition].priority == newList[newItemPosition].priority
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
-
+}
 
 +) === is used to check whether the oldList & newList points to the same location (or object in general)
 
