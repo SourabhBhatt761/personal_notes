@@ -1,4 +1,4 @@
-//write in a file
+ //write in a file
 
 File dataDir = ContextCompat.getDataDir(this);
 File myFile = new File(dataDir,"file.txt");
