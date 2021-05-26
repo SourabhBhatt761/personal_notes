@@ -1,0 +1,51 @@
+@Composable
+fun LayoutsCodeLab() {
+
+
+    val listSize = 100
+    val context = LocalContext.current
+    val scrollState = rememberLazyListState()
+
+    val coroutineScope = rememberCoroutineScope()
+
+
+    Column() {
+
+        Row {
+            Button(modifier = Modifier.fillMaxWidth(0.5f),
+                onClick = {
+                coroutineScope.launch {
+                    // 0 is the first item index
+                    scrollState.scrollToItem(0)
+                }
+            }) {
+                Text("Scroll to the top")
+            }
+
+            Button(modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                coroutineScope.launch {
+                    // listSize - 1 is the last index of the list
+                    scrollState.animateScrollToItem(listSize - 1)
+                }
+            }) {
+                Text("Scroll to the end")
+            }
+        }
+
+
+            LazyColumn(
+                state = scrollState,
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+
+                items(listSize) {
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Text("Item #$it")
+                }
+            }
+
+
+    }
+}

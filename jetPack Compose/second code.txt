@@ -1,0 +1,41 @@
+fun LayoutsCodeLab() {
+
+    val context = LocalContext.current
+    remember
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "LayoutsCodeLab")
+                },
+                actions = {
+                    IconButton(onClick = {
+                        Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
+                    }) {
+                        Icon(Icons.Filled.Favorite,contentDescription = null)
+
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding).padding(38.dp))
+    }
+}
+
+@Composable
+fun BodyContent(modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        Text(text = "Hi there!")
+        Text(text = "Thanks for going through the Layouts codeLab")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutsCodelabPreview() {
+    BasicComposeTheme() {
+        LayoutsCodeLab()
+    }
+}
