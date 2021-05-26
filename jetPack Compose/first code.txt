@@ -1,0 +1,88 @@
+@Composable
+fun PhotographerCard() {
+
+    val context = LocalContext.current
+    val context2 =
+
+        Column {
+
+            Row(modifier = Modifier.padding(26.dp)) {
+
+                Surface(
+                    modifier = Modifier
+                        .size(100.dp, 50.dp)
+                        .padding(start = 8.dp),
+                    shape = CircleShape,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_baseline_airport_shuttle_24),
+                        contentDescription = " null",
+                        modifier = Modifier
+                            .height(500.dp)
+
+                    )
+
+                }
+
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Text(text = "Sourabh bhatt", fontWeight = FontWeight.Bold, color = Color.Cyan,modifier = Modifier.padding(8.dp))
+
+                    Divider(color = Color.Black)
+                    CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+
+                        Surface(color = Color.Magenta,modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth()) {
+
+                            Text(
+                                text = "3 minutes ago",
+                                style = MaterialTheme.typography.body2,
+                                modifier = Modifier.clickable {
+                                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+
+            val count = remember {
+                mutableStateOf(0)
+            }
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Button(
+                    onClick = {
+                        count.value++
+                        Toast.makeText(context, "clicked $count times", Toast.LENGTH_SHORT).show()
+
+                              },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                {
+                    Icon(
+                        painterResource(id = R.drawable.ic_baseline_airport_shuttle_24),
+                        contentDescription = " null"
+                    )
+                    Text(text = "Button")
+                    BorderStroke(width = 8.dp, brush = SolidColor(Color.Cyan))
+                    RoundedCornerShape(16.dp)
+                }
+
+
+
+            }
+        }
+}
+
+
+@Composable
+fun PhotographerCardPreview() {
+    BasicComposeTheme {
+        PhotographerCard()
+    }
+}
