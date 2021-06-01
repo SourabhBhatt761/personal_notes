@@ -1,0 +1,10 @@
+ Card(shape = Shapes.small,
+        border = BorderStroke(2.dp,Color.Magenta),
+        modifier = Modifier
+            .padding(4.dp)
+            .clip(RoundedCornerShape(10.dp)),
+        backgroundColor = grey,
+        contentColor = Color.White,
+        elevation = 8.dp,
+
+    )
