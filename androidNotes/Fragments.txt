@@ -9,4 +9,4 @@ findNavController().navigate(R.id.action_....)
 Activity to fragment 
 
 * Create fragment in activity main set it's id 
-* findNavController(R.id.given_id).navigate(id produced by nac graph)
+* findNavController(R.id.given_id).navigate(id produced by nav graph)

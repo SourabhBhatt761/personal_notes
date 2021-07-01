@@ -8,6 +8,8 @@ class Repository @Inject constructor(
 }
 
 
--> @ActivityRetainedScoped this is used in repo bcz even if the state changes(landscape or pressed back button) repo should survive , like viewModels as they require repo
+-> @ActivityRetainedScoped this is used in repo bcz even if the state 
+	changes(landscape or pressed back button) repo should survive , like viewModels as 
+	they require repo
 
 
