@@ -6,5 +6,6 @@ class MainViewModel @ViewModelInject constructor(
 }
 
 
--> @ViewModelInject with the help of this we don't need to make factory . Dagger will handle everything internally.
+-> @ViewModelInject with the help of this we don't need to make factory . 
+	Dagger will handle everything internally.
 
