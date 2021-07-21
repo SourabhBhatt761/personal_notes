@@ -1,4 +1,5 @@
 
+//upload data
   val map = HashMap<String,String>()
         map["email"] = email
         map["pwd"] = pwd
@@ -15,3 +16,35 @@
             }
 
 * set -> uploads the data , * hash map is required *
+
+
+
+//data retrieval
+private fun snapshotDataRetrieval(db: FirebaseFirestore) {
+
+        db.collection("words").document("ssb").addSnapshotListener(this) { snapshot, e ->
+
+            if (snapshot != null && snapshot.exists()) {
+                val arrayData = snapshot.get("name") as ArrayList<*>
+
+             }
+	}
+
+    }
+
+    private fun normalDataRetrieval(db: FirebaseFirestore) {
+        db.collection("words")
+            .get().addOnSuccessListener { result ->
+                for (document in result) {
+
+                    val data = document.data["name"]
+                    binding.wordsTv.text = data.toString()
+
+                    Log.i("uni", "${document.id} -> ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("uni", "Error", exception)
+                Log.e("uni", "error")
+            }
+    }
