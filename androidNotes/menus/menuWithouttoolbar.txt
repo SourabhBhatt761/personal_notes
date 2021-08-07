@@ -1,0 +1,31 @@
+//menu.xml layout will be same the difference will lie in only this function
+  and in mainActivity.xml
+
+
+
+ fun showPopup(view: View) {
+        PopupMenu(this@MainActivity, view).apply {
+            // MainActivity implements OnMenuItemClickListener
+            inflate(R.menu.options_menu)
+            setOnMenuItemClickListener { menuItem ->
+                when(menuItem.itemId){
+                    R.id.history -> {
+                        Toast.makeText(this@MainActivity, "history", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                true
+            }
+            show()
+        }
+    }
+
+
+<androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/mainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showPopup"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_baseline_edit_24"/>
+
