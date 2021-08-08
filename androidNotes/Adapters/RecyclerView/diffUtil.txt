@@ -15,7 +15,7 @@ class RecipesDiffUtil(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] === newList[newItemPosition]
+        return oldList[oldItemPosition].id === newList[newItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
@@ -31,7 +31,8 @@ class RecipesDiffUtil(
  fun setData(toDoData: List<ToDoData>){
         val toDoDiffUtil = ToDoDiffUtil(dataList, toDoData)
         val toDoDiffResult = DiffUtil.calculateDiff(toDoDiffUtil)
-        this.dataList = toDoData
+	this.dataList.clear()
+        this.dataList.addAll(toDoData)					//for updating the same list use addAll and to to create a new list (new instance ) use this.dataList = toDoData	
         toDoDiffResult.dispatchUpdatesTo(this)
     }
 
@@ -40,7 +41,7 @@ class RecipesDiffUtil(
 + dispatchUpdatesTo     -> changes the recycler view (acts as notifydatasetchanged())
 
 
-
+ 
 MainActivity
 
 mAdapter.setData(list)
