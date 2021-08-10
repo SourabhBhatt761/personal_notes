@@ -15,3 +15,18 @@ val builder = AlertDialog.Builder(requireContext())
 
 + create() -> creates the dialog 
 + show() -> displays the dialog anytime we want .Best practise is to create the alertDialog class and show whenever we want to
+
+
+
+MaterialAlertDialogBuilder(this,R.style.AlertDialogTheme)
+            .setTitle("Random")
+            .setIcon(R.drawable.ic_baseline_edit_24)
+            .setMessage("Hello")
+            .setPositiveButton("SAVE") { _, _ ->
+                // change the text
+
+            }
+            .setNeutralButton("Cancel"){_,_ ->
+            }
+            .create()
+            .show()
