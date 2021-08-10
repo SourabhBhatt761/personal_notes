@@ -18,15 +18,23 @@ val builder = AlertDialog.Builder(requireContext())
 
 
 
-MaterialAlertDialogBuilder(this,R.style.AlertDialogTheme)
-            .setTitle("Random")
-            .setIcon(R.drawable.ic_baseline_edit_24)
-            .setMessage("Hello")
+//dialog box with custom edit text
+
+	val bind = CustomLayoutBinding.inflate(LayoutInflater.from(this))
+        bind.dialogEt.setText(storingList[position])
+
+        MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
+            .setView(bind.root)
+            .setMessage("Click save button to apply changes")
+
             .setPositiveButton("SAVE") { _, _ ->
                 // change the text
-
+                val editedName = bind.dialogEt.text.toString()
+                storingList[position] = editedName
+                Log.i("uni", editedName.toString())
+                mAdapter.addData(storingList)
             }
-            .setNeutralButton("Cancel"){_,_ ->
+            .setNeutralButton("Cancel") { _, _ ->
             }
             .create()
             .show()
