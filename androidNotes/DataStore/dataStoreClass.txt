@@ -1,0 +1,76 @@
+
+
+//to create the data store
+private val Context.dataStore by preferencesDataStore("preference_name")
+
+class DataStoreRepository (context: Context) {
+
+
+	// Create some keys we will use them to store and retrieve the data
+    private object PreferenceKeys {
+        val selectedMealType = stringPreferencesKey(PREFERENCES_MEAL_TYPE)
+        val selectedMealTypeId = intPreferencesKey(PREFERENCES_MEAL_TYPE_ID)
+        val selectedDietType = stringPreferencesKey(PREFERENCES_DIET_TYPE)
+        val selectedDietTypeId = intPreferencesKey(PREFERENCES_DIET_TYPE_ID)
+        val backOnline = booleanPreferencesKey(PREFERENCES_BACK_ONLINE)
+    }
+
+
+	//initializing data store
+    private val dataStore: DataStore<Preferences> = context.dataStore
+
+
+
+	 // Store user data
+    // refer to the data store and using edit 
+    // we can store values using the keys
+    suspend fun saveMealAndDietType(
+        mealType: String,
+        mealTypeId: Int,
+        dietType: String,
+        dietTypeId: Int
+    ) {
+        dataStore.edit { preferences ->
+            preferences[PreferenceKeys.selectedMealType] = mealType
+            preferences[PreferenceKeys.selectedMealTypeId] = mealTypeId
+            preferences[PreferenceKeys.selectedDietType] = dietType
+            preferences[PreferenceKeys.selectedDietTypeId] = dietTypeId
+        }
+    }
+
+
+ 	// Create an age flow to retrieve age from the preferences
+    // flow comes from the kotlin coroutine
+    val userAgeFlow: Flow<Int> = dataStore.data.map {
+        it[USER_AGE_KEY] ?: 0						//check the Flow< >return type 
+    }
+
+    val readMealAndDietType: Flow<MealAndDietType> = dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            val selectedMealType = preferences[PreferenceKeys.selectedMealType] ?: DEFAULT_MEAL_TYPE
+            val selectedMealTypeId = preferences[PreferenceKeys.selectedMealTypeId] ?: 0
+            val selectedDietType = preferences[PreferenceKeys.selectedDietType] ?: DEFAULT_DIET_TYPE
+            val selectedDietTypeId = preferences[PreferenceKeys.selectedDietTypeId] ?: 0
+            MealAndDietType(													//check the Flow< >return type 
+                selectedMealType,
+                selectedMealTypeId,
+                selectedDietType,
+                selectedDietTypeId
+            )
+        }
+
+}
+
+data class MealAndDietType(
+    val selectedMealType: String,
+    val selectedMealTypeId: Int,
+    val selectedDietType: String,
+    val selectedDietTypeId: Int
+)
