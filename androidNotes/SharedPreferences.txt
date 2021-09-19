@@ -1,0 +1,24 @@
+//reading the shared pref
+
+
+  val sh = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
+
+  sh.getBoolean(SHARED_PREF_NAME, false)
+
+
+MODE_PUBLIC will make the file public which could be accessible by other applications on the device
+
+MODE_PRIVATE keeps the files private and secures the user’s data.
+
+MODE_APPEND is used while reading the data from the SP file.
+
+sh.getString("key ","value")
+
+
+//setting the value
+ 	val sh = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
+
+        val value = sh.edit()
+
+	value.putBoolean(SHARED_PREF_NAME,true)
+        value.apply()					//apply is mandatory , previously we used to write commit.

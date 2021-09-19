@@ -1,0 +1,17 @@
+
+binding.clickBtn.setOnClickListener{
+	setBottomSheet(this,R.layout.bottomsheer_buy,findViewById(R.id.buy_layout))
+}
+
+* here we passed the context , the layout and id of that layout
+
+
+
+    private fun setBottomSheet(context: Context, bottomSheet: Int, layout: ViewGroup?) {
+        val sheet = BottomSheetDialog(context)
+
+        val view = LayoutInflater.from(context).inflate(bottomSheet, layout)
+
+        sheet.setContentView(view)
+        sheet.show()
+    }
