@@ -7,7 +7,7 @@ without iteration we can print everything as mentioned below
 
 
 enum class DayOfTheWeek {
-	  Sunday,
+	Sunday,
 	Monday,
 	Tuesday,
 	Wednesday,
