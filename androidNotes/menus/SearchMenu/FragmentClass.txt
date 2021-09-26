@@ -18,7 +18,7 @@ override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if(query != null) {
-            searchApiData(query)
+            searchApiData(query)						//fn to search the data after hitting enter
         }
         return true
     }
