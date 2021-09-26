@@ -1,0 +1,44 @@
+package com.example.zflip3app
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.zflip3app.databinding.NotificationMainItemBinding
+
+class MyRecyclerViewAdapter : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+
+
+    private var recyclerList = arrayListOf<NotificationContent>()
+
+    fun recyclerViewList(recyclerList : ArrayList<NotificationContent>){
+        this.recyclerList = recyclerList
+    }
+
+
+    class ViewHolder(val binding : NotificationMainItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        return ViewHolder(NotificationMainItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val currentItem = recyclerList[position]
+
+        holder.binding.apply {
+            mainNotificationFirstContent.text = currentItem.firstMessage
+            mainNotificationFirstTitle.text  = currentItem.firstTitle
+            mainNotificationSecondContent.text = currentItem.secondTitle
+            mainNotificationTitleTv.text = currentItem.title
+            mainNotificationSecondContent.text = currentItem.secondMessage
+        }
+
+
+    }
+
+    override fun getItemCount(): Int = recyclerList.size
+}
