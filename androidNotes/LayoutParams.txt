@@ -1,0 +1,12 @@
+
+//to change the margins programatically 
+
+ConstraintLayout.LayoutParams marginParams = (ConstraintLayout.LayoutParams) findViewById(R.id.imageView).getLayoutParams();
+
+
+  marginParams.setMargins(0,
+                20,
+                0,
+                0);
+
+		findViewById(R.id.imageView).setLayoutParams(marginParams);
