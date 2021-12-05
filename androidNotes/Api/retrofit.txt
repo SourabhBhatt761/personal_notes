@@ -12,19 +12,38 @@
 
 				_CREATION_
 
+//https://newsapi.org/v2/top-headlines?country=us&apiKey=API_KEY
+
+
+
+const val API_KEY = "your api key"
+const val BASE_URL = "https://newsapi.org"
+
 interface ApiClient{
 
 @GET("/api/endpoints/random")
 suspend fun getRandomImage(): Response<ModelClass>
 
+@GET("/v2/top-healines?apiKey=$API_KEY)
+suspend fun getHeadlines(@Query("country") country : String, @Query("page") page : Int ) : Response<Article>
+
+@GET("posts/{id}")
+suspend fun getPosts(@Path("id") userId : Int) : Response<User>
+
 }
 
-object ApiAdapter{
+object ApiInstance{
 
-val apiClient: ApiClient = Retrofit.Builder()
-	.baseUrl("https://dog.ceo")
-	.client(OkHttpClient())
-	.addConverterFactory(GsonConverterFactory.create())
-	.build()
-	.create(ApiClient::class.java)
-}
+	private val retrofit by lazy{
+
+		Retrofit.Builder()
+			.baseUrl(BASE_URL)
+			.client(OkHttpClient())
+			.addConverterFactory(GsonConverterFactory.create())		//or Moshi.
+			.build()
+		}
+
+	val apiClient: ApiClient by lazy { 
+		retrofit.create(ApiClient::class.java)
+		}
+	}

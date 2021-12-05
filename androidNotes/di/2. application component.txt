@@ -1,3 +1,5 @@
+//these are used for third party libraries where we can't instantiate @Inject
+
 
 @Module
 @InstallIn(SingletonComponent::class)

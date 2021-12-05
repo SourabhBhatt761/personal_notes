@@ -1,0 +1,15 @@
+ val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.recipesFragment,
+            R.id.favouriteRecipesFragment,
+            R.id.foodJokeFragment
+        ))
+         navController = navHostFragment.navController
+        binding.bottomNav.setupWithNavController(navController)
+
+        setupActionBarWithNavController(navController,appBarConfiguration)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
