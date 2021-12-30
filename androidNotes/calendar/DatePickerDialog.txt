@@ -1,0 +1,22 @@
+MaterialDatePicker.Builder<Long> materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        materialDateBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds());
+
+
+        final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
+        materialDatePicker.show(getActivity().getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+
+
+
+        materialDatePicker.addOnPositiveButtonClickListener(
+                selection -> {
+
+                    // if the user clicks on the positive
+                    // button that is ok button update the
+                    // selected date
+                    Log.i("uni",materialDatePicker.getHeaderText());
+
+//                    return materialDatePicker.getHeaderText();
+                    // in the above statement, getHeaderText
+                    // is the selected date preview from the
+                    // dialog
+                });
