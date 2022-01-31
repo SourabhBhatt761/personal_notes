@@ -39,7 +39,7 @@ fun main(args: Array<String>) {
 
 
 
--> the default name for the companion object will be comapnion , we can remove Test  
+-> the default name for the companion object will be companion , we can remove Test  
 
 
 

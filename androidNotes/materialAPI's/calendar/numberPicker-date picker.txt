@@ -1,0 +1,99 @@
+public class MonthYearPickerDialog extends DialogFragment {
+
+    private static final int MAX_YEAR = 2099;
+    private DatePickerDialog.OnDateSetListener listener;
+    int calendarMonth = -1;
+    int calendarYear = -1;
+
+    public MonthYearPickerDialog(int calendarMoth, int calendarYear){
+        this.calendarMonth = calendarMoth;
+        this.calendarYear = calendarYear;
+    }
+
+    public MonthYearPickerDialog(){
+        //required
+    }
+
+
+    public void setListener(DatePickerDialog.OnDateSetListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // Get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        FragmentExpenseBinding binding = FragmentExpenseBinding.inflate(getLayoutInflater());
+
+        Calendar cal = Calendar.getInstance();
+
+        View dialog = inflater.inflate(R.layout.date_picker_dialog, null);
+        final NumberPicker monthPicker = (NumberPicker) dialog.findViewById(R.id.picker_month);
+        final NumberPicker yearPicker = (NumberPicker) dialog.findViewById(R.id.picker_year);
+
+
+        monthPicker.setMinValue(0);
+        monthPicker.setMaxValue(11);
+//        if (calendarMonth != -1) {
+            monthPicker.setValue(calendarMonth);
+//        }else {
+//            monthPicker.setValue(cal.get(Calendar.MONTH));
+//        }
+
+        monthPicker.setDisplayedValues(new String[]{"Jan","Feb","Mar","Apr","May","June","July",
+                "Aug","Sep","Oct","Nov","Dec"});
+        int year = cal.get(Calendar.YEAR);
+        yearPicker.setMinValue(year - 10);
+        yearPicker.setMaxValue(MAX_YEAR);
+//        if (calendarYear != -1) {
+            yearPicker.setValue(calendarYear);
+//        }else {
+//            yearPicker.setValue(year);
+//        }
+        builder.setView(dialog)
+                // Add action buttons
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        listener.onDateSet(null, yearPicker.getValue(), monthPicker.getValue(), 0);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        MonthYearPickerDialog.this.getDialog().cancel();
+                    }
+                });
+        return builder.create();
+    }
+}
+
+
+
+
+
+
+
+in activity/fragment :-
+
+.........implements DatePickerDialog.OnDateSetListener
+
+binding.calendarLayout.setOnClickListener(view -> {
+
+            MonthYearPickerDialog pd = new MonthYearPickerDialog(spinnerMonth,spinnerYear);
+            pd.setListener(this);
+            pd.show(requireActivity().getSupportFragmentManager(),"MonthYearPickerDialog");
+
+        });
+
+
+ @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+        spinnerYear = i;
+        spinnerMonth = i1;
+        binding.calendarMonthTv.setText(monthList[i1] );
+        binding.calendarYearTv.setText(String.valueOf(i));
+
+        pullAllData(i,i1 + 1);
+    }
