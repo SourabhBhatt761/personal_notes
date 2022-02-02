@@ -1,0 +1,32 @@
+https://www.journaldev.com/31980/android-material-text-fields
+
+
+<com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+	style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="12dp"
+        android:hint="Enter description here"
+        app:helperText="*Required"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/dateTv"
+        app:layout_constraintHorizontal_weight="7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/PoppinsTextView_medium"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+descriptionEt.setEndIconOnClickListener {
+  // Respond to end icon presses
+}
+
+
+
