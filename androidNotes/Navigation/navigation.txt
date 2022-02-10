@@ -1,0 +1,30 @@
+ 
+
+
+
+Navigation.findNavController(view).popBackStack();
+
+		OR
+
+ Navigation.findNavController(binding.expenseSubmitBtn).popBackStack();
+
+
+
+	//when safe args is on add the class in navigation graph.
+
+ 	NavDirections action = ExpenseViewFragmentDirections.actionExpenseViewFragmentToAddExpenseFragment(expenseSummary);
+        Navigation.findNavController(view).navigate(action);
+
+
+//to navigate to another screen and pop out the current one.
+ <fragment
+        android:id="@+id/expenseViewFragment"
+        android:name="smartsense.co.in.sensephone.ui3.nav_expense.expense.ExpenseViewFragment"
+        android:label="View Expense"
+        tools:layout="@layout/fragment_expense_view" >
+        <action
+            android:id="@+id/action_expenseViewFragment_to_addExpenseFragment"
+            app:destination="@id/addExpenseFragment"
+            app:popUpTo="@id/expenseViewFragment"
+            app:popUpToInclusive="true" />
+    </fragment>

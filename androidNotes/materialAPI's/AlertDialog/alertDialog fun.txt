@@ -25,8 +25,8 @@ val builder = AlertDialog.Builder(requireContext())
 
         MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
             .setView(bind.root)
+	    .setTitle("Title")
             .setMessage("Click save button to apply changes")
-
             .setPositiveButton("SAVE") { _, _ ->
                 // change the text
                 val editedName = bind.dialogEt.text.toString()

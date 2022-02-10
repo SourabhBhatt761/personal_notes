@@ -1,0 +1,20 @@
+
+
+********Didn't tried for horizontal scroll yet********
+
+
+ binding.addMoreBtn.setOnClickListener(view -> {
+            addExpenseAdapter.addNewLineItem();
+//            binding.expenseRecyclerView.smoothScrollToPosition(addExpenseAdapter.getExpenseList().size());
+
+            final float scrollDuration = 2000f; // in milliseconds
+            final LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(binding.expenseRecyclerView.getContext()) {
+                @Override
+                protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                    return scrollDuration / binding.expenseRecyclerView.computeVerticalScrollRange();
+                }
+            };
+
+            linearSmoothScroller.setTargetPosition(addExpenseAdapter.getItemCount() - 1);
+            linearLayoutManager.startSmoothScroll(linearSmoothScroller);
+        });

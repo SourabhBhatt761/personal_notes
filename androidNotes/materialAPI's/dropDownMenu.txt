@@ -25,3 +25,6 @@
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item,stringArrayList);
         binding.dropdownMenu.setAdapter(arrayAdapter);
 
+
+	binding.dropdownMenu.setText(spinnerArray.get(0),false);			//here FALSE is imp.
+
