@@ -28,3 +28,20 @@
 
 	binding.dropdownMenu.setText(spinnerArray.get(0),false);			//here FALSE is imp.
 
+
+ holder.dropdownMenu.setOnItemClickListener((adapterView, view, i, l) -> {
+
+                    int adapterPosition = holder.getAbsoluteAdapterPosition();
+                    if (position > -1) {
+                        Expense e2 = (Expense) expenseInterfaceList.get(adapterPosition);
+                        e2.id = UUID.randomUUID().toString();
+                        e2.expenseType = typeSpinnerAdapter.getPosition(holder.spinner.getText().toString());
+                        e2.ec = holder.spinner.getText().toString();
+
+                        enableUpdateButton(true);
+                    }
+
+                    backPressedInterface.showBackPressedDialog();
+
+                });
+

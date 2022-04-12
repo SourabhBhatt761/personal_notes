@@ -1,0 +1,13 @@
+A service is a component that runs on the background to perform long running tasks.
+
+
+					: BACKGROUND SERVICE :
+
+It is a service that runs only when the app is running. App closed then the service will also be terminated
+
+					: FOREGROUND SERVICE : 
+
+It is a service which stays alive even when the app is terminated.
+
+
+https://www.youtube.com/watch?v=bA7v1Ubjlzw
