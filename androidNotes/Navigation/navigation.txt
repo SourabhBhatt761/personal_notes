@@ -28,3 +28,12 @@ Navigation.findNavController(view).popBackStack();
             app:popUpTo="@id/expenseViewFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+
+
+
+//*******************to change the start destination of the navgraph ******************************///
+            NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.mobile_navigation);
+            navGraph.setStartDestination(R.id.nav_expense);
+
+            navController.setGraph(navGraph);

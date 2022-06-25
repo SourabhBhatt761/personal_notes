@@ -1,0 +1,15 @@
+https://medium.com/android-dev-hacks/creating-a-custom-alert-dialog-with-material-design-library-in-android-f382bb23a6a8
+
+new MaterialAlertDialogBuilder(requireContext(), R.style.MyMaterialAlertDialog)
+                .setView(customDialogExpenseBinding.getRoot())
+                .setTitle(R.string.enter_description)
+                .setCancelable(false)
+                .setNegativeButton("Cancel",(dialogInterface, i) -> {})
+                .setPositiveButton("Done", (dialogInterface, i) -> {
+
+                    p.description = customDialogExpenseBinding.descriptionEt.getEditText().getText().toString();
+                    photoList.add(p);
+                    adapter.addEvidence(p);
+                })
+                .create()
+                .show();

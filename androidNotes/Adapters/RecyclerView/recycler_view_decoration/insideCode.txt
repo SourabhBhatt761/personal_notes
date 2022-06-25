@@ -1,0 +1,18 @@
+custom dialog box with , a scolling behaviour below the layout.
+
+CustomEvidenceUploadedBinding customDialogExpenseBinding = CustomEvidenceUploadedBinding.inflate(LayoutInflater.from(activityContext));
+
+
+           MaterialAlertDialogBuilder builder =  new MaterialAlertDialogBuilder(activityContext, R.style.MyMaterialAlertDialog);
+            builder.setView(customDialogExpenseBinding.getRoot());
+
+            CustomEvidenceUploadedAdapter adapter = new CustomEvidenceUploadedAdapter(expenseInterfaceList,activityContext);
+            LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(activityContext,LinearLayoutManager.HORIZONTAL,false);
+            customDialogExpenseBinding.recyclerView.setLayoutManager(linearLayoutManager);
+            customDialogExpenseBinding.recyclerView.setAdapter(adapter);
+            customDialogExpenseBinding.recyclerView.scrollToPosition(holder.getAbsoluteAdapterPosition());
+            
+            /*For horizontal scroll bar*/
+            customDialogExpenseBinding.recyclerView.addItemDecoration(new LinePagerIndicatorDecoration());
+                    builder.create()
+                    .show();

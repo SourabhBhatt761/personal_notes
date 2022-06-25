@@ -1,3 +1,7 @@
+https://www.valueof.io/blog/jetpack-navigation-multiple-backstacks
+
+
+
  <fragment
         android:id="@+id/recipesFragment"
         android:name="com.srb.beverages.ui.fragments.recipes.RecipesFragment"
