@@ -1,0 +1,32 @@
+Uri uri = data.getData();
+
+
+/*
+             * Get the file's content URI from the incoming Intent,
+             * then query the server app to get the file's display name
+             * and size.
+             */
+            Cursor returnCursor =
+                    getContentResolver().query(uri, null, null, null, null);
+            /*
+             * Get the column indexes of the data in the Cursor,
+             * move to the first row in the Cursor, get the data,
+             * and display it.
+             */
+            int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+            returnCursor.moveToFirst();
+
+            //"name" and "size" of file
+            String name = returnCursor.getString(nameIndex);
+            String size = Long.toString(returnCursor.getLong(sizeIndex));
+
+
+            ContentResolver cR = getContentResolver();
+            MimeTypeMap mime = MimeTypeMap.getSingleton();
+
+            //"pdf"
+            String type = mime.getExtensionFromMimeType(cR.getType(uri));
+
+            //"application/pdf"
+            String mimeType = getContentResolver().getType(uri);

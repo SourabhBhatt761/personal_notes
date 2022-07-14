@@ -1,0 +1,9 @@
+initialize at once. 
+
+dfq.options = new HashMap<Integer,DynamicFormOptionMetaData>(){{
+                                put(optionMetaData.optionID,optionMetaData);
+                            }};
+
+
+//from hashmap to arraylist
+new ArrayList<>(zerothSection.formQuestions.values())
