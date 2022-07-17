@@ -1,13 +1,21 @@
-A service is a component that runs on the background to perform long running tasks.
+A service is a component that runs on the background to perform long running tasks `WITH NO USER INTERFACE`
+
 
 
 					: BACKGROUND SERVICE :
 
 It is a service that runs only when the app is running. App closed then the service will also be terminated
 
+e.g. -> playing music in background, it plays the music untill the app is killed
+
+
+
+
+
 					: FOREGROUND SERVICE : 
 
 It is a service which stays alive even when the app is terminated.
+e.g. -> downloading , location tracking in unolo, we've to show a notification for foreground service.
 
 
 https://www.youtube.com/watch?v=bA7v1Ubjlzw

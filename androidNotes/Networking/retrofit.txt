@@ -26,11 +26,39 @@ interface ApiClient{
 @GET("/api/endpoints/random")
 suspend fun getRandomImage(): Response<ModelClass>
 
+
+//when url contain something like /user/posts/2.....then only @Path is used
+//if there's a url containing /user/posts/2?page=2
+//we need @Query , because it is performing a search query in server side
+@GET("posts/{id}")
+suspend fun getPosts(@Path("id") userId : Int) : Response<User>
+
+
+//we can pass the query parameter in url like $API_KEY or in function parameters like `page` as @Query
 @GET("/v2/top-healines?apiKey=$API_KEY)
 suspend fun getHeadlines(@Query("country") country : String, @Query("page") page : Int ) : Response<Article>
 
-@GET("posts/{id}")
-suspend fun getPosts(@Path("id") userId : Int) : Response<User>
+
+//Post is used to insert something in server
+@POST("/users/new")
+Call<User> createUser(@Body User user);
+
+
+//when we want to update an existing data in server 
+@PUT("/users/new")
+Call<User> createUser(@Body User user);
+
+
+//when we've to update just one field, which is `code` here @Field annotation is used.
+@FormUrlEncoded
+@POST("/some/endpoint")
+Observable<SomeResponse> someEndpoint(@Field("code") String code);		
+
+
+//same can be done with put as well
+@FormUrlEncoded
+@PUT("/some/endpoint")
+Observable<SomeResponse> someEndpoint(@Field("code") String code);
 
 }
 

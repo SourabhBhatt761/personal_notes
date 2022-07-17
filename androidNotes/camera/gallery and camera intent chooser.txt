@@ -1,0 +1,195 @@
+<-------manifest---------------->
+
+<uses-permission android:name="android.permission.CAMERA" />
+
+<uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <queries>
+    <intent>
+        <action android:name="android.media.action.IMAGE_CAPTURE" />
+    </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+
+            <data android:mimeType="vnd.android.cursor.dir/image" />
+        </intent>
+    </queries>
+
+
+
+<----------activity--------------------------->
+
+// function to check permission
+    private fun checkAndRequestPermissions(context: Activity?): Boolean {
+        val wExtStorePermission = ContextCompat.checkSelfPermission(
+            context!!,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        val cameraPermission = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.CAMERA
+        )
+        val listPermissionsNeeded : ArrayList<String>  = ArrayList()
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA)
+        }
+        if (wExtStorePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded
+                .add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (listPermissionsNeeded.isNotEmpty()) {
+            ActivityCompat.requestPermissions(							//after this function android request a dialog for permissions
+                context, listPermissionsNeeded.toTypedArray(),
+                101
+            )
+            return false
+        }
+        return true
+    }
+
+
+
+
+
+
+binding.clickPicture.setOnClickListener {
+            takePhoto()
+        }
+
+
+    private fun takePhoto() {
+        val allIntents: MutableList<Intent> = ArrayList()
+        val outputFileUri = getCaptureImageOutputUri()
+        // collect all camera intents
+        val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val listCam = packageManager.queryIntentActivities(captureIntent, 0)
+        for (res in listCam) {
+            val intent = Intent(captureIntent)
+            intent.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
+            intent.setPackage(res.activityInfo.packageName)
+            if (outputFileUri != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            allIntents.add(intent)
+        }
+        // collect all gallery intents
+        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+        galleryIntent.type = "image/*"
+        val listGallery = packageManager.queryIntentActivities(galleryIntent, 0)
+        for (res in listGallery) {
+            val intent = Intent(galleryIntent)
+            intent.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
+            intent.setPackage(res.activityInfo.packageName)
+            intent.type = "image/*"
+            allIntents.add(intent)
+        }
+        val mainIntent = allIntents[allIntents.size - 1]
+        val chooserIntent = Intent.createChooser(mainIntent, "Complete action using")
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, allIntents.toTypedArray<Parcelable>())
+//        val chooserIntent = Utils.takePhoto(getCaptureImageOutputUri(),packageManager)
+        activityResultLauncher.launch(chooserIntent)
+//        startActivityForResult(chooserIntent, REQUEST_IMAGE_CAPTURE);
+
+
+//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
+//        takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//        activityResultLauncher.launch(takePictureIntent)
+
+    }
+
+
+
+private fun getCaptureImageOutputUri(): Uri? {
+        var outputFileUri: Uri? = null
+        val getImage = externalCacheDir					//when we click a picture , it gets saved in cache and we get that by externalCacheDir,
+											//it gets saved by the name of profile.png
+        if (getImage != null) {
+            outputFileUri = FileProvider.getUriForFile(
+                this,
+                pathProvider,
+                File(getImage.path, "profile.png")
+            )
+        }
+        return outputFileUri
+    }
+
+
+private var activityResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result: ActivityResult ->
+        if (result.resultCode == RESULT_OK) {
+            val data = result.data
+            val imageBitmap: Bitmap?
+            //check whether picked from gallery or camera
+            if (getPickImageResultUri(data) != null) {
+
+                //From gallery
+                val picUri = getPickImageResultUri(data)
+                imageBitmap = getImage(
+                    picUri,
+                    this
+                )
+                val file = setupForPhotoDescription(imageBitmap)
+                if (file != null) {
+                    upload(file)
+                }
+
+//                RequestClass request = new RequestClass("biometric.unolo.com",p);
+                // The Lambda function invocation results in a network call.
+                // Make sure it is not called from the main thread.
+//                cognitoAsyncTask.execute(request);
+            } else {
+
+                //From camera
+                if (data != null) {
+                    val extras = data.extras
+                    imageBitmap = extras!!.getParcelable("data")
+                    setupForPhotoDescription(imageBitmap)
+                } else {
+                    Toast.makeText(this, "akldfj", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+
+private fun getPickImageResultUri(data: Intent?): Uri? {
+        var isCamera = true
+        if (data != null) {
+            val action = data.action
+            isCamera = action != null && action == MediaStore.ACTION_IMAGE_CAPTURE
+        }
+        return if (isCamera) getCaptureImageOutputUri() else data!!.data						//i guess data.getData() is imp. I GUESS.
+    }
+
+
+
+@Throws(IOException::class)
+    fun createImageFile(context: Context): File? {
+        // Create an image file name
+        val YYYYMMDD_HHMMSS = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH)
+
+        val timeStamp: String = YYYYMMDD_HHMMSS.format(System.currentTimeMillis())
+        val imageFileName = "JPEG_$timeStamp"
+        //returns private storage internal to our app
+        val storageDir = context.filesDir
+
+        //storageDir.mkdirs();
+        return File.createTempFile(
+            imageFileName, 	 /*   prefix   */
+            ".jpg",  		/*   suffix   */
+            storageDir 	     /* directory  */
+        )
+    }
+
+
+
+
+
+
+
+
