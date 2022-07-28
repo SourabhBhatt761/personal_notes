@@ -1,4 +1,4 @@
-
+implementation "androidx.datastore:datastore-preferences:1.0.0-alpha08"
 
 //to create the data store updated version !!
 private val Context.dataStore by preferencesDataStore("preference_name")
