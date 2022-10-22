@@ -1,1 +1,15 @@
-check for the migration issue.
+-> Basic testing
+
+	* What I've worked on should run properly
+	* Check for every modal values for example id(primary key) is storing to database.
+	* Screen compatibility
+	* Check for default values like visibility in xml
+
+
+-> negative testing
+   
+	* offline and online both
+	* every edge case
+
+
+-> migration

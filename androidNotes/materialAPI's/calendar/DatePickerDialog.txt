@@ -20,3 +20,16 @@ MaterialDatePicker.Builder<Long> materialDateBuilder = MaterialDatePicker.Builde
                     // is the selected date preview from the
                     // dialog
                 });
+
+
+
+
+//set selection manually 
+
+try {
+                SimpleDateFol̥rmat simpleDateFormat = DD_MM_YYYY;
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));				 //this is important.
+                date = simpleDateFormat.parse(completedFormQuestionData.questionValue).getTime();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
