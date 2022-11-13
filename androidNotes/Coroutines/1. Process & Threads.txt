@@ -1,0 +1,3 @@
+Process -> Whenever we perform an operation a process is created 
+
+Thread -> To do the work a process creates a thread i.e. Thread of Execution

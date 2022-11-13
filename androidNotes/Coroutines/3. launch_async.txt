@@ -1,0 +1,78 @@
+val job = CoroutineScope(Dispatchers.Io).launch{
+
+		doSomeJob()
+
+	}
+
+	job.join()					//waits until the job has finished.
+
+	Log.i("TAG","will print after finishing work inside job")
+
+	job is of type JOB.
+
+
+
+
+	//************ with async **************//
+
+	val job = CoroutineScope(Dispatchers.Io).async{
+
+		doSomeJob()
+		"Print this"
+
+	}
+
+	Log.i("TAG",job.await);
+
+	* Here job is of type deffered<T> which means whatever will be last statement class inside async{} which is STRING here deffered<String> it will become the return type.
+	* When log will get print we'll see "print this" statement.
+
+
+
+	//********** We can use both at the same time ****************//
+		
+	CoroutineScope(Dispatchers.Io).launch{
+
+		var fb = doFirstJob() 
+		var insta = doSecondJob() 
+		Log.i(TAG,"Fb - ${fb}, Insta - ${insta}")
+
+	}
+
+	* This call takes 2 seconds two display the result because doSecondJob() will call after doFirstJob() is finished 
+	
+
+	CoroutineScope(Dispatchers.Io).launch{
+
+		var fb = async { doFirstJob() }
+		var insta = async { doSecondJob() }
+		Log.i(TAG,"Fb - ${fb.await()}, Insta - ${insta.await()}")
+
+	}
+
+	With the help of this method it takes less time to print the statment as we've used async and they both are executing parallely not dependent on each other.
+
+
+
+
+
+
+	
+
+	//************** CONCLUSION *************//
+
+	* Whenver there's a dependency on coroutine use async and await functionlaity of coroutines
+	* Launch -> when you don not care about the result . (Fire & forget)
+	* Async -> When you expect result/output from your coroutine.
+
+
+
+
+
+
+
+
+
+
+
+	

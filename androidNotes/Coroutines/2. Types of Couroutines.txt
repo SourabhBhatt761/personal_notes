@@ -1,0 +1,23 @@
+CoroutineScope(Dispatchers.Io).launch{
+
+	//creates a new thread 
+
+	}
+
+
+
+GlobalScope.launch(Dispatchers.Main){
+
+	//this should not be used as it's stick with the application class , hence not an optimal scope
+
+	}
+
+
+MainScope().launch(Dispatchers.Default){
+
+	//this scope represents the activity scope in which we're right now..
+
+	}
+
+
+
