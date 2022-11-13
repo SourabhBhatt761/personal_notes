@@ -1,0 +1,13 @@
+Kotlin has an object keyword, which combines both declaring a class and creating an instance of it in one action. 
+
+
+object Singleton {
+    fun sayMyName() {
+        println("I'm a singleton")
+    }
+}
+
+
+
+-> object creates a class and prepares an object for it everything handles internally 
+-> USAGE???   -> it is a SINGLETON object !!!
