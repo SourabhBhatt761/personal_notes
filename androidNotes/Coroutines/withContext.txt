@@ -1,0 +1,16 @@
+
+
+* Both withContext and async can be used to get the result which is not possible with the launch.
+* Use withContext to return the result of a SINGLE_TASK.
+* Use async for results from multiple tasks that RUN_IN_PARALLEL.
+* An exception in the async block will cancel the parent scope. We will learn how to handle it in the exception handling section.
+* Any exception in the withContext block will get thrown and let us catch without an extra scope.
+
+
+private suspend fun doLongRunningTask() {
+    withContext(Dispatchers.Default) {
+        // your code for doing a long running task
+        // Added delay to simulate
+        delay(5000)
+    }
+}

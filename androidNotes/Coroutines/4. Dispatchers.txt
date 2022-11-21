@@ -1,0 +1,9 @@
+Dispatchers Dispatchers determine which thread pool should be used. Dispatchers class is also CoroutineContext which can be added to CoroutineContext
+
+
+
+* Dispatchers.Default: CPU-intensive work, such as sorting large lists, doing complex calculations and similar. A shared pool of threads on the JVM backs it.
+
+* Dispatchers.IO: networking or reading and writing from files. In short – any input and output, as the name states
+
+* Dispatchers.Main: mandatory dispatcher for performing UI-related events in Android's main or UI thread.

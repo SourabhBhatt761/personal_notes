@@ -20,4 +20,17 @@ MainScope().launch(Dispatchers.Default){
 	}
 
 
+lifecycleScope.launch{
+
+	//used inside activities 
+	//need? -> 
+
+	}
+
+viewModelScope.launch{
+
+//used inside viewmodel
+
+}
+
 
