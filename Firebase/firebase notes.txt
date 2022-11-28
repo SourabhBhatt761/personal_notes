@@ -1,3 +1,13 @@
 * addOnCompleteListener -> for success and failure both can be evaluated
 * addOnSuccessListener -> for success only
 * addOnFailureListener -> for failure only
+
+
+* ValueEventListener -> it fires if only the value of a node changes
+* ChildEventListener -> fires if that node's child value also changes
+
+	CVL can fire many times use wisely.
+
+
+* addValueEventListener() ->  keep listening to query or database reference it is attached to.
+* addListenerForSingleValueEvent() -> executes onDataChange method immediately and after executing that method once, it stops listening to the reference location it is attached to.

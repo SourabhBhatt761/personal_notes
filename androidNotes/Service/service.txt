@@ -1,4 +1,4 @@
-A service is a component that runs on the background to perform long running tasks `WITH NO USER INTERFACE`
+A service is a component that runs on the background(main thread) to perform long running tasks `WITH NO USER INTERFACE`
 
 
 
@@ -19,3 +19,9 @@ e.g. -> downloading , location tracking in unolo, we've to show a notification f
 
 
 https://www.youtube.com/watch?v=bA7v1Ubjlzw
+
+
+
+- START_STICKY: This is used for services that are explicitly started and stopped as needed.
+- START_NOT_STICKY: This is used to let the OS know that there is a need to stay alive only when there is a command that has to be run. This can mean that the OS can kill the service if a higher priority Service has to be run.
+- START_REDELIVER_INTENT: This has the same property as that of the START_NOT_STICKY, except if the OS kills it, the Service gets fired once again! This is really important if you are going to be creating a long-running ForegroundService (Might also be a bounded service).
