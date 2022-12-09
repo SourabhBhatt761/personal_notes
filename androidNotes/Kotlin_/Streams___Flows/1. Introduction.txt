@@ -1,0 +1,28 @@
+https://www.youtube.com/watch?v=kOpRhtbhftI&list=PLRKyZvuMYSIPJ84lXQSHMn8P-0J8jW5YT&index=1
+
+
+There are 2 types of streams
+
+1) Channels (hot observable)
+
+2) Flows (cold observable)
+
+
+
+
+
+
+						**CHANNELS**
+
+They do not depend upon the observer they simply emit all the data even if there's no observer
+eg. -> chat app, movie halls
+
+
+
+
+
+
+
+						**Flows**
+They send the data only when there's a observer 
+eg-> netflix
