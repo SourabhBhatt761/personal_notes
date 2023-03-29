@@ -1,0 +1,6 @@
+https://developer.chrome.com/docs/devtools/remote-debugging/local-server/
+
+
+
+
+adb shell am start -W -a android.intent.action.VIEW -d "https://www.unolo.com/endtask" smartsense.co.in.sensephone

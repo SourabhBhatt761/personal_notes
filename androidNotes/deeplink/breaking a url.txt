@@ -1,0 +1,21 @@
+
+https://www.unolo.com/starttask/testParam/?description=task description&clientID=1234
+
+
+
+1) /starttask and /testParam are parameters
+2) after question mark ?description & clientID are queryParameter
+
+
+List<String> parameters = data.getPathSegments();
+-> this will display the parameters starttask & testparam
+
+
+
+String description = Uri.parse(data.toString()).getQueryParameter("description"                                                                                                                                                 String clientID = Uri.parse(data.toString()).getQueryParameter("clientID");						               	
+String redirectURI = Uri.parse(data.toString()).getQueryParameter("redirectURI");
+-> this will give the query parameters
+
+
+parse a string to URI	
+->Uri uri = Uri.parse(data.toString());
