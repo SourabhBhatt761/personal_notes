@@ -42,3 +42,21 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHol
 
     override fun getItemCount(): Int = recyclerList.size
 }
+
+
+
+
+
+
+inside the class where we're calling this adapter write this code:
+	  adapter = new LeaveBalanceRVAdapter();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.setAdapter(adapter);
+
+
+
+
+
+
