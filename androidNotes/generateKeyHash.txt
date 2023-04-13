@@ -1,0 +1,8 @@
+first install openssl in your computer.
+
+You can use the git openssl path, which is the best option.
+Go to C:\Program Files\Git\usr\bin and add this to the environment variables path
+
+
+run this commmand in your terminal :-
+keytool -exportcert -alias key0 -keystore "C:\Users\bhatt\.android\debug.keystore" | openssl sha1 -binary | openssl base64
