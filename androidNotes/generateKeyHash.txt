@@ -6,3 +6,9 @@ Go to C:\Program Files\Git\usr\bin and add this to the environment variables pat
 
 run this commmand in your terminal :-
 keytool -exportcert -alias key0 -keystore "C:\Users\bhatt\.android\debug.keystore" | openssl sha1 -binary | openssl base64
+
+
+
+___________________output created didn't accepted by azure____________
+
+So, i did "Double ctrl click " -> gradlew signingreport -> copied the SHA1 KEY went to https://base64.guru/converter/encode/hex and it WORKED like a charm!
