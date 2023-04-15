@@ -14,7 +14,7 @@ List<String> parameters = data.getPathSegments();
 
 String description = Uri.parse(data.toString()).getQueryParameter("description"                                                                                                                                                 String clientID = Uri.parse(data.toString()).getQueryParameter("clientID");						               	
 String redirectURI = Uri.parse(data.toString()).getQueryParameter("redirectURI");
--> this will give the query parameters
+-> this will give the query parameters values like "task description" & "1234"
 
 
 parse a string to URI	
