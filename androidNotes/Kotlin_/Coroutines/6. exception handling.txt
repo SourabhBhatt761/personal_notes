@@ -1,0 +1,49 @@
+_______________using launc{}___________________
+
+
+1) One way is to use a try-catch block:
+
+
+GlobalScope.launch(Dispatchers.Main) {
+    try {
+        fetchUserAndSaveInDatabase() // do on IO thread and back to UI Thread
+    } catch (exception: Exception) {
+        Log.d(TAG, "$exception handled !")
+    }
+}
+
+
+
+
+2) Another way is to use a handler:
+
+For this we need to create an exception handler as below:
+
+val handler = CoroutineExceptionHandler { _, exception ->
+    Log.d(TAG, "$exception handled !")
+}
+
+
+Then, we can attach the handler as below:
+
+GlobalScope.launch(Dispatchers.Main + handler) {
+    fetchUserAndSaveInDatabase() // do on IO thread and back to UI Thread
+}
+
+
+
+
+
+_______________________usign async{}_________________________
+
+When using async, we need to use the try-catch block to handle the exception like below.
+
+
+val deferredUser = GlobalScope.async {
+    fetchUser()
+}
+try {
+    val user = deferredUser.await()
+} catch (exception: Exception) {
+    Log.d(TAG, "$exception handled !")
+}

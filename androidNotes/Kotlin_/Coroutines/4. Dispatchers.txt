@@ -1,4 +1,4 @@
-Dispatchers Dispatchers determine which thread pool should be used. Dispatchers class is also CoroutineContext which can be added to CoroutineContext
+Dispatchers determine which thread pool should be used. Dispatchers class is also CoroutineContext which can be added to CoroutineContext
 
 
 

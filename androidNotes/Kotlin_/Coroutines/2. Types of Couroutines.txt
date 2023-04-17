@@ -23,13 +23,15 @@ MainScope().launch(Dispatchers.Default){
 lifecycleScope.launch{
 
 	//used inside activities 
-	//need? -> 
+	//need -> the background task should get canceled as soon as the activity is destroyed.
 
 	}
 
 viewModelScope.launch{
 
-//used inside viewmodel
+	//used inside viewmodel
+	//need -> the background task should get canceled as soon as the viewmodel is destroyed.
+
 
 }
 

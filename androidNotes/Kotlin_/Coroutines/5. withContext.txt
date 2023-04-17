@@ -14,3 +14,28 @@ private suspend fun doLongRunningTask() {
         delay(5000)
     }
 }
+
+
+As far as I've understood, withContext(Dispatchers.something) is used for context switching
+
+Suppose you're doing a call in main thread for ui and you need to do a network call, so in case of a network call
+you can use withContext(Dispatchers.IO)
+
+eg.
+fun fetchAndShowUser() {
+    GlobalScope.launch(Dispatchers.Main) {
+        val user = fetchUser() // fetch on IO thread
+        showUser(user) // back on UI thread
+    }
+}
+
+suspend fun fetchUser(): User {
+    return withContext(Dispatchers.IO) {
+        // make network call on IO thread
+        // return user
+    }
+}
+
+fun showUser(user: User) {
+    // show user
+}
