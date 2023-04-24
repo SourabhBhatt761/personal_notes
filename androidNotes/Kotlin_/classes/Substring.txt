@@ -1,0 +1,16 @@
+	  Log.i(TAG,"value->  "+value);
+        Log.i(TAG,"substring 0 ->  "+value.substring(0));
+        Log.i(TAG,"substring 0,0 ->  "+value.substring(0,0));
+        Log.i(TAG,"substring 0,1 ->  "+value.substring(0,1));
+        Log.i(TAG,"substring 0,2 ->  "+value.substring(0,2));
+        Log.i(TAG,"char at ->  "+value.charAt(0));
+
+
+OUTPUT
+
+value->  2.0
+I/LeavesAdapter: substring 0 ->  2.0
+I/LeavesAdapter: substring 0,0 ->  
+I/LeavesAdapter: substring 0,1 ->  2
+I/LeavesAdapter: substring 0,2 ->  2.
+I/LeavesAdapter: char at ->  2

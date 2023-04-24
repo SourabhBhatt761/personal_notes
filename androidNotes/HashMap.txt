@@ -1,9 +1,34 @@
-initialize at once. 
 
-dfq.options = new HashMap<Integer,DynamicFormOptionMetaData>(){{
-                                put(optionMetaData.optionID,optionMetaData);
-                            }};
+//initialize
+HashMap<String,LeavesTaken> hashMap = new HashMap<String,LeavesTaken>();
+
+//put
+hashMap.put(YOUR_KEY,YOUR_OBJECT);
+
+//iteration
+There are two methods to iterate over hashmap
+
+1)        
+            Iterator<String> iterator = hashMap.keySet().iterator();
+            while (iterator.hasNext()) {
+
+                 String key = iterator.next();
+                 YOUR_OBJECT item = hashMap.get(key);
+		}
+
+
+2)        for (String key : hashMap.keySet()) {
+
+            
+            }
 
 
 //from hashmap to arraylist
-new ArrayList<>(zerothSection.formQuestions.values())
+new ArrayList<>(hashMap.values());
+
+
+initialize at once. 
+
+new HashMap<Integer,DynamicFormOptionMetaData>(){{
+                                put(optionMetaData.optionID,optionMetaData);
+                            }};

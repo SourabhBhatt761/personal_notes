@@ -1,0 +1,7 @@
+PopupMenu menu = new PopupMenu(this, view);
+
+menu.getMenu().add("One");
+menu.getMenu().add("Two");
+menu.getMenu().add("Three");
+
+menu.show();
