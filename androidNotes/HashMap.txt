@@ -22,6 +22,11 @@ There are two methods to iterate over hashmap
             
             }
 
+          for (String value : hashMap.values()) {
+
+            
+            }
+
 
 //from hashmap to arraylist
 new ArrayList<>(hashMap.values());

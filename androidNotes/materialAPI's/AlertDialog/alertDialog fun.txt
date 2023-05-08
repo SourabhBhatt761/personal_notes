@@ -38,3 +38,19 @@ val builder = AlertDialog.Builder(requireContext())
             }
             .create()
             .show()
+
+
+//full screen dialog
+
+
+	-> android.R.style.Theme_Translucent_NoTitleBar this theme is important here.
+	-> inside your xml file apply the bg color     android:background="#99000000"
+
+
+	Dialog dialog = new Dialog(requireContext(), android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.setContentView(dialogBinding.getRoot());
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
