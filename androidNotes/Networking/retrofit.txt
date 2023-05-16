@@ -39,6 +39,7 @@ suspend fun getRandomImage(): Response<ModelClass>
     /*@Path -> data which we input before question mark in url is set by this annotation */
     /*@Body -> payload for the POST call (serialized from a Java object to a JSON string)*/
 
+    /*@Header -> to add a header to a particular api use this, else you can use interceptor of okhttp3
 
 
 //when url contain something like /user/posts/2.....then only @Path is used
@@ -61,6 +62,10 @@ Call<User> createUser(@Body User user);
 //when we want to update an existing data in server 
 @PUT("/users/new")
 Call<User> createUser(@Body User user);
+
+
+@GET("/event")
+fun getProViewEventTypes(@Header(value = "app-id") app_id : String = "lakljklj")
 
 
 //when we've to update just one field, which is `code` here @Field annotation is used.
