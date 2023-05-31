@@ -21,9 +21,11 @@ cat edu4.txt
 
 				**New branch**
 
-git branch branchName		( adds the branch after master )
+git branch branchName		                  ( adds the branch from your current branch )
 
-git checkout branchName		( jumps to the newly created branch )
+git branch <new_branch> <any_existing_branch> 	( creates a new branch from your existing branch )
+
+git checkout branchName		                  ( jumps to the newly created branch )
 
 
 
