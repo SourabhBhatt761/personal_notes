@@ -34,3 +34,12 @@ git checkout branchName		                  ( jumps to the newly created branch )
 go to the master branch first by git checkout command
 
 git merge branchName
+
+
+				**stash**
+git stash		
+git stash apply
+
+
+
+
