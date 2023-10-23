@@ -1,0 +1,10 @@
+*Define extension functions *
+
+
+
+
+
+We can create our own functions for simplicity of the code.
+
+eg, is the number prime?
+Solution:- we can check the function 
