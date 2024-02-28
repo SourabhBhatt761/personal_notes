@@ -1,3 +1,9 @@
+
+A special class that reporesents a group of constants.
+
+
+
+
 *Used instead of list
 	how many times we'll iterate for finding the x?
 	then enum came in existance

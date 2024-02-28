@@ -81,6 +81,32 @@ Observable<SomeResponse> someEndpoint(@Field("code") String code);
 
 }
 
+
+
+//***************MULTIPART****************//
+
+@Multipart
+@POST("api/protected/biometric/biometricAttendance")
+suspend fun processAttendancePic(
+    @Part file: MultipartBody.Part
+)
+
+NOW,inside the repository call the method
+  val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+  val body: MultipartBody.Part = MultipartBody.Part.createFormData("photo",file.name,requestFile)
+  senseStaffServicesApi.processAttendancePic(
+      file = body
+  )
+
+here "photo" was the attribute to upload the photo
+
+
+//***********************************************//
+
+
+
+
+
 object ApiInstance{
 
 	private val retrofit by lazy{

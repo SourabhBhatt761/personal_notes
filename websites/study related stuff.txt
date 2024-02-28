@@ -2,7 +2,8 @@ https://tutflix.org/
 
 * first login with dummy account
 * then you'll se nothing, literally nothing
-* login again but this time use the already existing account do not add new account.
+* close the tab and click on download once again 
+* this time use the already existing account do not add new account.
 
 
 

@@ -1,0 +1,1 @@
+https://medium.com/@milindamrutkar/the-internals-of-viewmodel-and-surviving-configuration-changes-d62f0c871c30#:~:text=In%20the%20Android%20world%2C%20the,configuration%20changes%20like%20screen%20rotations.
