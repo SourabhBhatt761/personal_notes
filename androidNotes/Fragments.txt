@@ -1,4 +1,5 @@
- (context as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,ProfileFragment()).commit()
+
+///////////////////// JETPACK NAVIGATION ///////////////////////////
 
 .setONClick{
 findNavController().navigate(R.id.action_....)
@@ -10,3 +11,53 @@ Activity to fragment
 
 * Create fragment in activity main set it's id 
 * findNavController(R.id.given_id).navigate(id produced by nav graph)
+
+
+
+
+
+//////////////////// TRADITIONAL NAVIGATION //////////////////////////
+
+
+1)	Bundle bundle = new Bundle();
+    bundle.putInt("some_int", 0);
+
+    getSupportFragmentManager().beginTransaction()
+        .setReorderingAllowed(true)
+		.addToBackStack()
+        .add(R.id.fragment_container_view, ExampleFragment.class, bundle)
+        .commit();
+				
+				
+	After opening ExampleFragment.class you can get the bundle by calling :-
+	getArguments().getInt("some_int);
+		
+
+	-> .setReorderingAllowed(true)
+	Sets whether or not to allow optimizing operations within and across transactions. 
+	This will remove redundant operations, eliminating operations that cancel. 
+	For example, if two transactions are executed together, one that adds a fragment A and the next replaces it with fragment B, the operations will cancel and only fragment B will be added. 
+	That means that fragment A may not go through the creation/destruction lifecycle.
+	
+	-> .addToBackStack()
+	Add this transaction to the back stack. 
+	This means that the transaction will be remembered after it is committed, and will reverse its operation when later popped off the stack.
+				
+	-> .add()
+	This adds a fragment on the fragment_container_view
+	
+	-> .replace()
+	This replaces the fragment which was present in fragment_container_view and adds.
+	This is a short method for .replace() = .add() + .remove()
+	
+	
+				
+2) 	Fragments can host one or more child fragments. 
+	Inside a fragment, you can get a reference to the FragmentManager that manages the fragment's children through getChildFragmentManager(). 
+	If you need to access its host FragmentManager, you can use getParentFragmentManager().				
+				
+
+
+getSupportFragmentManager().beginTransaction()
+.replace(R.id.fragmentContainer,ProfileFragment())
+.commit()
