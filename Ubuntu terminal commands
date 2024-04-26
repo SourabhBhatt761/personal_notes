@@ -1,0 +1,12 @@
+Delete
+
+sudo rm Android 		- for deleting an empty file
+sudo rm -rf Android 	- for deleting a file which has content inside
+
+
+Move
+sudo mv Android /opt	- where opt is the target destination
+
+
+Copy 
+sudo cp Android /opt 
