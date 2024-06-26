@@ -1,0 +1,12 @@
+
+
+
+
+	In a long running coroutine always check wether the coroutine is active or not by 
+	
+	someScope.launch {
+	    for(file in files) {
+		ensureActive() // Check for cancellation
+		readFile(file)
+	    }
+	}
