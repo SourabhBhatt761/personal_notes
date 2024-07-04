@@ -1,3 +1,7 @@
+
+launch and async are coroutine builder 
+
+
 val job = CoroutineScope(Dispatchers.Io).launch{
 
 		doSomeJob()
@@ -73,27 +77,191 @@ val job = CoroutineScope(Dispatchers.Io).launch{
 	It blocks the current thread in which we've started the runblocking command.
 
 
+1 & 2 are running in parrallel / asynchronously 
+but 3 is running in series/ synchronously
+
+1) With async await
+
+	Log.i(TAG, "starting runblocking")
+        runBlocking {
+            Log.i(TAG, "inside runblocking")
+            val job1 = async {
+                Log.i(TAG,"inside launch")
+                adminDataDao.insertAdminList(receivedAdminList)
+                Log.i(TAG,"adding delay")
+                delay(5000)
+            }
+            Log.i(TAG, "job1 fired")
+            val job2 = async {
+                Log.i(TAG,"inside launch 2")
+                adminDataDao.insertRoleList(receivedRoleList)
+                Log.i(TAG,"adding delay 2")
+                delay(5000)
+            }
+            Log.i(TAG, "job2 fired")
+
+            val job3 = async {
+                Log.i(TAG,"adding delay 3")
+                delay(5000)
+                Log.i(TAG,"starting launch 3")
+                deletedAdminList.forEach {
+                    adminDataDao.deleteAdminDataAndRoleWithID(it)
+                }
+            }
+
+            Log.i(TAG, "job3 fired")
+            awaitAll(job1, job2, job3)
+            Log.i(TAG, "all done")
+        }
+
+2024-07-04 09:29:07.699 21610-21661 AdminRepository         com.example.myownapplication         I  starting runblocking
+2024-07-04 09:29:07.700 21610-21661 AdminRepository         com.example.myownapplication         I  inside runblocking
+2024-07-04 09:29:07.700 21610-21661 AdminRepository         com.example.myownapplication         I  job1 fired
+2024-07-04 09:29:07.700 21610-21661 AdminRepository         com.example.myownapplication         I  job2 fired
+2024-07-04 09:29:07.701 21610-21661 AdminRepository         com.example.myownapplication         I  job3 fired
+2024-07-04 09:29:07.701 21610-21661 AdminRepository         com.example.myownapplication         I  inside launch
+2024-07-04 09:29:07.703 21610-21661 AdminRepository         com.example.myownapplication         I  inside launch 2
+2024-07-04 09:29:07.703 21610-21661 AdminRepository         com.example.myownapplication         I  adding delay 3
+2024-07-04 09:29:07.724 21610-21661 AdminRepository         com.example.myownapplication         I  adding delay
+2024-07-04 09:29:07.728 21610-21661 AdminRepository         com.example.myownapplication         I  adding delay 2
+2024-07-04 09:29:12.705 21610-21661 AdminRepository         com.example.myownapplication         I  starting launch 3
+2024-07-04 09:29:12.732 21610-21661 AdminRepository         com.example.myownapplication         I  all done
+2024-07-04 09:29:12.735 21610-21661 AdminRepository         com.example.myownapplication         I  returning success
+
+
+
+2) With launch
+
+
+	Log.i(TAG, "starting runblocking")
+        runBlocking {
+            Log.i(TAG, "inside runblocking")
+            launch {
+                Log.i(TAG,"inside launch")
+                adminDataDao.insertAdminList(receivedAdminList)
+                Log.i(TAG,"adding delay")
+                delay(5000)
+            }
+            Log.i(TAG, "job1 fired")
+            launch {
+                Log.i(TAG,"inside launch 2")
+                adminDataDao.insertRoleList(receivedRoleList)
+                Log.i(TAG,"adding delay 2")
+                delay(5000)
+            }
+            Log.i(TAG, "job2 fired")
+
+            launch {
+                Log.i(TAG,"adding delay 3")
+                delay(5000)
+                Log.i(TAG,"starting launch 3")
+                deletedAdminList.forEach {
+                    adminDataDao.deleteAdminDataAndRoleWithID(it)
+                }
+            }
+
+            Log.i(TAG, "all done")
+        }
+
+
+
+        Log.i(TAG, "starting runblocking")
+        runBlocking {
+            Log.i(TAG, "inside runblocking")
+            val job1 = launch {
+                Log.i(TAG,"inside launch")
+                adminDataDao.insertAdminList(receivedAdminList)
+                Log.i(TAG,"adding delay")
+                delay(5000)
+            }
+            Log.i(TAG, "job1 fired")
+            val job2 = launch {
+                Log.i(TAG,"inside launch 2")
+                adminDataDao.insertRoleList(receivedRoleList)
+                Log.i(TAG,"adding delay 2")
+                delay(5000)
+            }
+            Log.i(TAG, "job2 fired")
+
+            val job3 = launch {
+                Log.i(TAG,"adding delay 3")
+                delay(5000)
+                Log.i(TAG,"starting launch 3")
+                deletedAdminList.forEach {
+                    adminDataDao.deleteAdminDataAndRoleWithID(it)
+                }
+            }
+
+            Log.i(TAG, "job3 fired")
+
+            joinAll(job1,job2,job3)
+            Log.i(TAG, "all done")
+        }
+        
+
+2024-07-04 09:25:22.311 20382-20432 AdminRepository         com.example.myownapplication         I  starting runblocking
+2024-07-04 09:25:22.312 20382-20432 AdminRepository         com.example.myownapplication         I  inside runblocking
+2024-07-04 09:25:22.312 20382-20432 AdminRepository         com.example.myownapplication         I  job1 fired
+2024-07-04 09:25:22.312 20382-20432 AdminRepository         com.example.myownapplication         I  job2 fired
+2024-07-04 09:25:22.313 20382-20432 AdminRepository         com.example.myownapplication         I  all done
+2024-07-04 09:25:22.313 20382-20432 AdminRepository         com.example.myownapplication         I  inside launch
+2024-07-04 09:25:22.315 20382-20432 AdminRepository         com.example.myownapplication         I  inside launch 2
+2024-07-04 09:25:22.315 20382-20432 AdminRepository         com.example.myownapplication         I  adding delay 3
+2024-07-04 09:25:22.330 20382-20432 AdminRepository         com.example.myownapplication         I  adding delay
+2024-07-04 09:25:22.334 20382-20432 AdminRepository         com.example.myownapplication         I  adding delay 2
+2024-07-04 09:25:27.318 20382-20432 AdminRepository         com.example.myownapplication         I  starting launch 3
+2024-07-04 09:25:27.335 20382-20432 AdminRepository         com.example.myownapplication         I  returning success
 
 
 
 
 
+3) Without using launch/async
+
+        Log.i(TAG, "starting runblocking")
+	runBlocking {
+            Log.i(TAG, "inside runblocking")
+            Log.i(TAG, "inside launch")
+            adminDataDao.insertAdminList(receivedAdminList)
+            Log.i(TAG, "adding delay")
+            delay(5000)
+
+            Log.i(TAG, "job1 fired")
+            Log.i(TAG, "inside launch 2")
+            adminDataDao.insertRoleList(receivedRoleList)
+            Log.i(TAG, "adding delay 2")
+            delay(5000)
+
+            Log.i(TAG, "job2 fired")
+
+            Log.i(TAG, "adding delay 3")
+            delay(5000)
+            Log.i(TAG, "starting launch 3")
+            deletedAdminList.forEach {
+                adminDataDao.deleteAdminDataAndRoleWithID(it)
+            }
+
+
+            Log.i(TAG, "job3 fired")
+
+            Log.i(TAG, "all done")
+        }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+2024-07-04 09:37:05.206 27798-27835 AdminRepository         com.example.myownapplication         I  starting runblocking
+2024-07-04 09:37:05.206 27798-27835 AdminRepository         com.example.myownapplication         I  inside runblocking
+2024-07-04 09:37:05.206 27798-27835 AdminRepository         com.example.myownapplication         I  inside launch
+2024-07-04 09:37:05.227 27798-27835 AdminRepository         com.example.myownapplication         I  adding delay
+2024-07-04 09:37:10.229 27798-27835 AdminRepository         com.example.myownapplication         I  job1 fired
+2024-07-04 09:37:10.230 27798-27835 AdminRepository         com.example.myownapplication         I  inside launch 2
+2024-07-04 09:37:10.239 27798-27835 AdminRepository         com.example.myownapplication         I  adding delay 2
+2024-07-04 09:37:15.241 27798-27835 AdminRepository         com.example.myownapplication         I  job2 fired
+2024-07-04 09:37:15.241 27798-27835 AdminRepository         com.example.myownapplication         I  adding delay 3
+2024-07-04 09:37:20.242 27798-27835 AdminRepository         com.example.myownapplication         I  starting launch 3
+2024-07-04 09:37:20.242 27798-27835 AdminRepository         com.example.myownapplication         I  job3 fired
+2024-07-04 09:37:20.242 27798-27835 AdminRepository         com.example.myownapplication         I  all done
+2024-07-04 09:37:20.243 27798-27835 AdminRepository         com.example.myownapplication         I  returning success
 
 
 
