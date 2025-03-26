@@ -1,0 +1,8 @@
+export ENVIRONMENT=DEV
+node app.js
+
+Go to winston.js
+transports: [
+            new winston.transports.Console(),
+            // new winston.transports.File({ filename: getLogFileName(moduleName) })
+        ]
